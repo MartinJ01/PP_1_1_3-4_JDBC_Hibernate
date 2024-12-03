@@ -22,7 +22,7 @@ public class Main {
         userService.saveUser("Name4", "LastName4", (byte) 35);
 
         for (User user : userService.getAllUsers()) {
-            System.out.println(user.toString());
+            System.out.println(user);
         }
 
         userService.cleanUsersTable();
