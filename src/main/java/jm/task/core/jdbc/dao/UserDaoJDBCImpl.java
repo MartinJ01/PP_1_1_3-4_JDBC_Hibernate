@@ -15,7 +15,7 @@ public class UserDaoJDBCImpl implements UserDao {
         
     }
 
-    public void createUsersTable() throws SQLException {
+    public void createUsersTable() {
         String query = """
                 CREATE TABLE IF NOT EXISTS users
                 (id INT PRIMARY KEY AUTO_INCREMENT,
@@ -30,7 +30,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    public void dropUsersTable() throws SQLException {
+    public void dropUsersTable() {
         String query = "DROP TABLE IF EXISTS users";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(query);
@@ -39,7 +39,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    public void saveUser(String name, String lastName, byte age) throws SQLException {
+    public void saveUser(String name, String lastName, byte age) {
         String query = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
@@ -53,7 +53,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    public void removeUserById(long id) throws SQLException {
+    public void removeUserById(long id) {
         String query = "DELETE FROM users WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
@@ -63,7 +63,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    public List<User> getAllUsers() throws SQLException {
+    public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
         String query = "SELECT * FROM users";
 
@@ -86,7 +86,7 @@ public class UserDaoJDBCImpl implements UserDao {
         return users;
     }
 
-    public void cleanUsersTable() throws SQLException {
+    public void cleanUsersTable() {
         String query = "DELETE FROM users";
 
         try (Statement statement = connection.createStatement()) {

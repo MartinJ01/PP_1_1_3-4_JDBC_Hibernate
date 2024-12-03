@@ -3,35 +3,34 @@ package jm.task.core.jdbc.service;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
     UserDaoJDBCImpl userDao = new UserDaoJDBCImpl();
 
-    public void createUsersTable() throws SQLException {
+    public void createUsersTable() {
         userDao.createUsersTable();
     }
 
-    public void dropUsersTable() throws SQLException {
+    public void dropUsersTable() {
         userDao.dropUsersTable();
     }
 
-    public void saveUser(String name, String lastName, byte age) throws SQLException {
+    public void saveUser(String name, String lastName, byte age) {
         userDao.saveUser(name, lastName, age);
         System.out.println("User с именем - " + name + " добавлен в базу данных");
     }
 
-    public void removeUserById(long id) throws SQLException {
+    public void removeUserById(long id) {
         userDao.removeUserById(id);
     }
 
-    public List<User> getAllUsers() throws SQLException {
+    public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 
-    public void cleanUsersTable() throws SQLException {
+    public void cleanUsersTable() {
         userDao.cleanUsersTable();
     }
 }
