@@ -32,7 +32,9 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createNativeQuery(query).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
         }
 
     }
@@ -47,7 +49,9 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createNativeQuery(query).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
         }
     }
 
@@ -59,7 +63,9 @@ public class UserDaoHibernateImpl implements UserDao {
             session.save(user);
             transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
         }
     }
 
@@ -74,7 +80,9 @@ public class UserDaoHibernateImpl implements UserDao {
                     .setParameter("id", id).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
         }
 
     }
@@ -87,7 +95,9 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
             return users;
         } catch (Exception e) {
-            transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
         }
         return null;
     }
@@ -102,7 +112,9 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createNativeQuery(query).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
         }
     }
 }
