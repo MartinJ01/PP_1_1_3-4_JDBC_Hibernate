@@ -31,6 +31,8 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction = session.beginTransaction();
             session.createNativeQuery(query).executeUpdate();
             transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
         }
 
     }
@@ -44,6 +46,8 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction = session.beginTransaction();
             session.createNativeQuery(query).executeUpdate();
             transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
         }
     }
 
@@ -54,6 +58,8 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
         }
     }
 
@@ -67,6 +73,8 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createNativeQuery(query)
                     .setParameter("id", id).executeUpdate();
             transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
         }
 
     }
@@ -78,7 +86,10 @@ public class UserDaoHibernateImpl implements UserDao {
             List<User> users = session.createQuery("from User", User.class).list();
             transaction.commit();
             return users;
+        } catch (Exception e) {
+            transaction.rollback();
         }
+        return null;
     }
 
     @Override
@@ -90,6 +101,8 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction = session.beginTransaction();
             session.createNativeQuery(query).executeUpdate();
             transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
         }
     }
 }
